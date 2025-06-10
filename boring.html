@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise Word</title>
+    <style>
+        body {
+            background-color: black; /* Black background */
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            color: white; /* Make default text visible on black */
+        }
+        button {
+            background-color: #007bff; /* A nice blue for the button */
+            color: white;
+            padding: 15px 30px; /* Slightly larger button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px; /* Larger font for button text */
+            transition: background-color 0.3s ease;
+            margin-bottom: 30px; /* Space between button and word */
+        }
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+        #funnyWordDisplay {
+            margin-top: 20px;
+            font-size: 3em; /* Very large font for the word */
+            font-weight: bold;
+            color: limegreen; /* Bright color for the funny word */
+            min-height: 1.5em; /* Helps prevent layout shift */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="pressButton">Press</button>
+    <div id="funnyWordDisplay"></div>
+
+    <script>
+        const funnyWords = [
+            "Bumfuzzle", "Cattywampus", "Snollygoster", "Flibbertigibbet",
+            "Malarkey", "Gobbledygook", "Skedaddle", "Shenanigans",
+            "Nincompoop", "Wobble", "Quibble", "Lollygag", "Hornswoggle",
+            "Discombobulate", "Absquatulate", "Codswallop", "Bumbershoot",
+            "Kakistocracy", "Donnybrook", "Flummox", "Kerfuffle"
+        ];
+
+        document.getElementById('pressButton').addEventListener('click', function() {
+            const displayDiv = document.getElementById('funnyWordDisplay');
+            const randomIndex = Math.floor(Math.random() * funnyWords.length);
+            displayDiv.textContent = funnyWords[randomIndex];
+        });
+    </script>
+
+</body>
+</html>
