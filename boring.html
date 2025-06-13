@@ -3,48 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surprise Word</title>
+    <title>Surprise Word Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #6a0572;
+            --secondary-color: #ab3e5b;
+            --text-color: #f0f0f0;
+            --highlight-color: #83d475;
+            --background-gradient-start: #1a1a2e;
+            --background-gradient-end: #16213e;
+            --button-hover-darken: #55045b;
+        }
+
         body {
-            background-color: black; /* Black background */
-            font-family: sans-serif;
+            background: linear-gradient(135deg, var(--background-gradient-start), var(--background-gradient-end));
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh; /* Full viewport height */
+            min-height: 100vh;
             margin: 0;
             padding: 20px;
             box-sizing: border-box;
-            color: white; /* Make default text visible on black */
+            color: var(--text-color);
+            overflow: hidden;
         }
+
+        h1 {
+            color: var(--highlight-color);
+            margin-bottom: 40px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
         button {
-            background-color: #007bff; /* A nice blue for the button */
+            background-color: var(--primary-color);
             color: white;
-            padding: 15px 30px; /* Slightly larger button */
+            padding: 18px 35px;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             cursor: pointer;
-            font-size: 20px; /* Larger font for button text */
-            transition: background-color 0.3s ease;
-            margin-bottom: 30px; /* Space between button and word */
+            font-size: 22px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            letter-spacing: 0.5px;
+            outline: none;
         }
+
         button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: var(--button-hover-darken);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
         }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
         #funnyWordDisplay {
-            margin-top: 20px;
-            font-size: 3em; /* Very large font for the word */
-            font-weight: bold;
-            color: limegreen; /* Bright color for the funny word */
-            min-height: 1.5em; /* Helps prevent layout shift */
+            margin-top: 30px;
+            font-size: 3.8em;
+            font-weight: 700;
+            color: var(--highlight-color);
+            min-height: 1.6em;
             text-align: center;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            letter-spacing: 2px;
+            animation: fadeIn 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            button {
+                padding: 15px 25px;
+                font-size: 18px;
+            }
+            #funnyWordDisplay {
+                font-size: 2.5em;
+            }
         }
     </style>
 </head>
 <body>
-
-    <button id="pressButton">Press</button>
+    <h1>Get Your Surprise Word!</h1>
+    <button id="pressButton">Reveal Word</button>
     <div id="funnyWordDisplay"></div>
 
     <script>
@@ -53,13 +115,25 @@
             "Malarkey", "Gobbledygook", "Skedaddle", "Shenanigans",
             "Nincompoop", "Wobble", "Quibble", "Lollygag", "Hornswoggle",
             "Discombobulate", "Absquatulate", "Codswallop", "Bumbershoot",
-            "Kakistocracy", "Donnybrook", "Flummox", "Kerfuffle"
+            "Kakistocracy", "Donnybrook", "Flummox", "Kerfuffle",
+            "Bamboozle", "Rigmarole", "Widdershins", "Sesquipedalian"
         ];
 
         document.getElementById('pressButton').addEventListener('click', function() {
             const displayDiv = document.getElementById('funnyWordDisplay');
             const randomIndex = Math.floor(Math.random() * funnyWords.length);
-            displayDiv.textContent = funnyWords[randomIndex];
+            
+            displayDiv.style.opacity = 0;
+            displayDiv.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                displayDiv.textContent = funnyWords[randomIndex];
+                void displayDiv.offsetWidth; 
+                displayDiv.style.animation = 'none';
+                displayDiv.offsetHeight;
+                displayDiv.style.animation = null;
+                displayDiv.style.animation = 'fadeIn 1s ease-out forwards';
+            }, 300);
         });
     </script>
 
