@@ -22,10 +22,6 @@ This is a fun and interactive webpage that shows a random funny or unusual word 
 2. Open the file in any web browser
 3. Click the **"Reveal Word"** button to get a random funny word
 
-## 🖼 Preview
-
-![preview](https://via.placeholder.com/800x400?text=Surprise+Word+Generator+Preview)
-
 ## 📄 Technologies Used
 
 - HTML5
